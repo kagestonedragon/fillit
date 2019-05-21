@@ -6,7 +6,7 @@
 /*   By: emedea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 18:07:34 by emedea            #+#    #+#             */
-/*   Updated: 2019/05/20 18:16:33 by emedea           ###   ########.fr       */
+/*   Updated: 2019/05/21 17:14:45 by emedea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 #include <unistd.h>
 #include <stdio.h>
 
-int		amount_tetriminos(char *input)
+int			amount_tetriminos(char *input)
 {
-	int	i;
-	int length;
-	int	tetriminos;
+	int		i;
+	int 	length;
+	int		tetriminos;
 
 	i = 0;
 	length = ft_strlen(input);
@@ -33,6 +33,8 @@ int		amount_tetriminos(char *input)
 		tetriminos++;
 		i += 21;
 	}
+	if (input[i + 20] != '\n' && (i + 20) < length)
+		return (0);
 	if (input[length - 1] == '\n' && (input[length - 2] == '.' || input[length - 2] == '#'))
 	{
 		tetriminos++;
@@ -41,19 +43,17 @@ int		amount_tetriminos(char *input)
 	return (0);
 }
 
-int		validate_symbols(char *input)
+static int validate_symbols(char *input)
 {
-	int dot;
-	int sharp;
-	int new_line;
-	int counter;
+	int		dot;
+	int 	sharp;
+	int 	new_line;
+	int 	counter;
 
 	dot = 0;
 	sharp = 0;
 	new_line = 0;
 	counter = 0;
-	if (!input)
-		return (0);
 	while (counter < 20)
 	{
 		if (input[counter] == '.' && dot < 12)
@@ -69,20 +69,20 @@ int		validate_symbols(char *input)
 	return (0);
 }
 
-int		validate_connections(char *input)
+static int		validate_connections(char *input)
 {
-	int	i;
-	int	connections;
-	int	sharp_counter;
+	int		i;
+	int		connections;
+	int		sharp_counter;
 
-	i = 0;
+	i = -1;
 	connections = 0;
 	sharp_counter = 0;
-	if (!input)
-		return (0);
-	while (connections < 8)
+	while (connections < 8 && sharp_counter < 4)
 	{
-		if (input[i] == '#')
+		if ((i % 5) == 0 && input[i] != '\n')
+			return (0);
+		if (input[++i] == '#')
 			sharp_counter++;
 		if (input[i] == '#' && input[i - 1] == '#')
 			connections++;
@@ -92,9 +92,6 @@ int		validate_connections(char *input)
 			connections++;
 		if (input[i] == '#' && input[i - 5] == '#')
 			connections++;
-		i++;
-		if (sharp_counter == 4)
-			break ;
 	}
 	if (connections == 8 || connections == 6)
 		return (1);
@@ -109,7 +106,7 @@ int		validation(char *input)
 	if (!input)
 		return (0);
 	amount = amount_tetriminos(input);
-	if (amount > 26 || amount == 0)
+	if (amount > 26 || amount <= 0)
 		return (0);
 	tetriminos = 0;
 	while (tetriminos < amount)
@@ -123,20 +120,4 @@ int		validation(char *input)
 		tetriminos++;
 	}
 	return (1);
-}
-
-int			main(void)
-{
-	int		amount;
-	char	*str;
-	int		fd;
-	char	tmp[10000];
-
-	fd = open("test", O_RDONLY);
-	amount = read(fd, tmp, 9999);
-	tmp[amount] = '\0';
-	str = (char *)malloc(sizeof(char) * (amount + 1));
-	str = ft_strdup(tmp);
-	printf("%d", validation(str));
-	return 0;
 }
