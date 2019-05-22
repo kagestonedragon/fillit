@@ -6,7 +6,7 @@
 /*   By: emedea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 18:07:34 by emedea            #+#    #+#             */
-/*   Updated: 2019/05/21 17:14:45 by emedea           ###   ########.fr       */
+/*   Updated: 2019/05/22 20:21:17 by emedea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ static int		validate_connections(char *input)
 	sharp_counter = 0;
 	while (connections < 8 && sharp_counter < 4)
 	{
-		if ((i % 5) == 0 && input[i] != '\n')
-			return (0);
 		if (input[++i] == '#')
 			sharp_counter++;
 		if (input[i] == '#' && input[i - 1] == '#')

@@ -6,7 +6,7 @@
 /*   By: emedea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 12:35:54 by emedea            #+#    #+#             */
-/*   Updated: 2019/05/21 18:05:02 by emedea           ###   ########.fr       */
+/*   Updated: 2019/05/22 20:37:00 by emedea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_tetriminos		coordinates(char *input)
 	sharp = 0;
 	object.y[sharp] = 0;
 	object.x[sharp] = 0;
-	while (++counter < 20)
+	while (++counter < 20 && sharp < 4)
 	{
 		if (!sharp && input[counter] == '#')
 		{
@@ -58,27 +58,9 @@ t_tetriminos		*fill_objects(char *input, int amount)
 	while (counter < amount)
 	{
 		objects[counter] = coordinates(&input[i]);
+		objects[counter].number = counter;
 		counter++;
 		i += 21;
 	}
 	return (objects);
-}
-
-int			main(void)
-{
-	int		amount;
-	char	*str;
-	int		fd;
-	char	tmp[10000];
-	t_tetriminos *objects;
-
-	fd = open("test", O_RDONLY);
-	amount = read(fd, tmp, 9999);
-	tmp[amount] = '\0';
-	str = (char *)malloc(sizeof(char) * (amount + 1));
-	str = ft_strdup(tmp);
-	objects = fill_objects(str, 3);
-	if (objects)
-		printf("%d", objects[1].y[3]);
-	return (0);
 }
