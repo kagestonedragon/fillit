@@ -64,3 +64,60 @@ t_tetriminos		*fill_objects(char *input, int amount)
 	}
 	return (objects);
 }
+
+static void         swap(t_tetriminos *a, int i, int j)
+{
+    t_tetriminos    s;
+
+    s = a[i];
+    a[i] = a[j];
+    a[j] = s;
+}
+
+int                 last_combination(t_tetriminos *input, int amount)
+{
+    int             i;
+    int             j;
+    t_tetriminos    temporary;
+
+    i = amount - 2;
+    while (i != -1 && input[i].number >= input[i + 1].number)
+        i--;
+    if (i == -1)
+    {
+        while (++i < amount)
+        {
+            j = -1;
+            while (++j < amount)
+            {
+                if (input[i].number < input[j].number)
+                {
+                    temporary = input[i];
+                    input[i] = input[j];
+                    input[j] = temporary;
+                }
+            }
+        }
+        return (1);
+    }
+    return (0);
+}
+        
+t_tetriminos        *next_combination(t_tetriminos *input, int amount)
+{
+    int             i;
+    int             j;
+
+    i = amount - 2;
+    while (i != -1 && input[i].number >= input[i + 1].number)
+        i--;
+    j = amount - 1;
+    while (input[i].number >= input[j].number)
+        j--;
+    swap(input, i, j);
+    j = i + 1;
+    i = amount - 1;
+    while (j < i)
+        swap(input, j++, i--);
+    return (input);
+}

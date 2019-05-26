@@ -23,10 +23,10 @@ int			main(void)
 	int		fd;
 	int		amount;
 	char	*str;
-	char	buff[100];
+	char	buff[10000];
 
 	fd = open("test", O_RDONLY);
-	amount = read(fd, buff, 99);
+	amount = read(fd, buff, 9999);
 	buff[amount] = '\0';
 	str = (char *)malloc(sizeof(char) * (amount + 1));
 	str = ft_strdup(buff);
@@ -37,11 +37,10 @@ int			main(void)
 
 	amount1 = amount_tetriminos(str);
 	objects = fill_objects(str, amount1);
-
 	//генерируем карту
 	t_map			map;
 
-	map = generate_map(objects, amount1);
+	map = generate_map(objects, amount1, minimal_map_size(amount1), 0, 0);
 	printf("%s", map.solution);
 	return (0);
 }

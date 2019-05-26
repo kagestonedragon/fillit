@@ -17,26 +17,14 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-static int		minimal_map_size(int amount)
-{
-	int			result;
 
-	result = amount * 4;
-	if (result == 4)
-		return (2);
-	while (!ft_sqrt(result))
-		result++;
-	printf("%d\n", ft_sqrt(result));
-	return(ft_sqrt(result));
-}
-
-static t_map	init_new_map(int amount)
+static t_map	init_new_map(int amount, int map_size)
 {
 	t_map		result;
 	int			solution_size;
 	int			i;
 
-	result.size = 4;
+	result.size = map_size;
 	solution_size = (result.size * result.size) + result.size + 1;
 	result.solution = (char *)malloc(sizeof(char) * solution_size);
 	ft_memset(result.solution, '.', solution_size);
@@ -50,77 +38,43 @@ static t_map	init_new_map(int amount)
 	return (result);
 }
 
-
-static void			new_coordinates(t_tetriminos *new, t_tetriminos *old, int x, int y)
+static int          main_solution(t_tetriminos *object, t_tetriminos *new_object, t_map *map, int *x, int *y)
 {
-	int				i;
+    int             i;
 
-	i = -1;
-	while (++i < 4)
-	{
-		new->x[i] = old->x[i] + x;
-		new->y[i] = old->y[i] + y;
-	}
+    i = 0;
+    while(i < ft_strlen(map->solution))
+    {
+        new_coordinates(new_object, object, *x, *y);
+        current_map_position(map, &i, x, y);
+        if (is_here_place(new_object, map))
+        {
+            write_tetriminos_to_map(new_object, map, object->number);
+            return (1);
+        }
+        i++;
+    }
+    return (0);
 }
 
-/*static int			is_here_place(t_tetriminos *new, t_map *map)
+t_map				generate_map(t_tetriminos *objects, int amount, int map_size, int x, int y)
 {
+	t_map			map;
+	t_tetriminos	*new_objects;
 	int				i;
-	int				new_coordinates;
+	int				j;
+	int				success;
 
+	new_objects = (t_tetriminos *)malloc(sizeof(t_tetriminos) * amount);
+	map = init_new_map(amount, map_size);
 	i = -1;
-	while (++i < 4)
-	{
-		new_coordinates = ((map->size) * new->y[i]) + new->x[i] + new->y[i];
-		if (!(map->solution[new_coordinates] == '.'))
-			return (0);
-	}
-	return (1);
-}*/
-
-static	void		current_map_position(t_map *map, int *k, int *x, int *y)
-{
-	if (map->solution[*k] == '\n')
-	{
-		*k += 1;
-		*y += 1;
-		*x = 0;
-	}
-	else
-		*x += 1;
-}
-
-static void			write_tetriminos_to_map(t_tetriminos *new, t_map *map, int number)
-{
-	int				i;
-	int				new_coordinates;
-
-	i = -1;
-	while (++i < 4)
-	{
-		new_coordinates = ((map->size) * new->y[i]) + new->x[i] + new->y[i];
-		map->solution[new_coordinates] = 65 + number;
-	}
-}
-
-t_map				generate_map(t_tetriminos *objects, int amount)
-{
-	t_map			our_map;
-	t_tetriminos	*temp;
-	int				i;
-	int				temp_k;
-	int				k;
-	int				x;
-	int				y:
-	int				smogli_li_postavit;
-	int				perestanovki;
-	int				len;
-
-	perestanovki = 0;
-	temp = (t_tetriminos *)malloc(sizeof(t_tetriminos) * amount);
-	our_map = init_map(amount);
-	i = 0;
-	x = 0;
-	y = 0;
-	k = 0;
+    success = 0;
+    while (++i < amount)
+        if (main_solution(&objects[i], &new_objects[i], &map, &x, &y))
+            success++;
+    if (success == amount)
+        return (map); 
+    else if (!last_combination(objects, amount))
+        return (generate_map(next_combination(objects, amount), amount, map_size, 0, 0));
+    return (generate_map(next_combination(objects, amount), amount, map_size + 1, 0, 0));
 }

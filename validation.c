@@ -114,7 +114,7 @@ int		validation(char *input)
 		if (validate_connections(input))
 			input += 21;
 		else
-			return (0);
+		    return (0);
 		tetriminos++;
 	}
 	return (1);
