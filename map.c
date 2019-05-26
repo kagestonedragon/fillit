@@ -38,7 +38,7 @@ static t_map	init_new_map(int amount, int map_size)
 	return (result);
 }
 
-static int          main_solution(t_tetriminos *object, t_tetriminos *new_object, t_map *map, int *x, int *y)
+static int          solution(t_tetriminos *object, t_tetriminos *new_object, t_map *map, int *x, int *y)
 {
     int             i;
 
@@ -70,7 +70,7 @@ t_map				generate_map(t_tetriminos *objects, int amount, int map_size, int x, in
 	i = -1;
     success = 0;
     while (++i < amount)
-        if (main_solution(&objects[i], &new_objects[i], &map, &x, &y))
+        if (solution(&objects[i], &new_objects[i], &map, &x, &y))
             success++;
     if (success == amount)
         return (map); 
