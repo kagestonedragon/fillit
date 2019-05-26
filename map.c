@@ -6,7 +6,7 @@
 /*   By: emedea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 17:56:56 by emedea            #+#    #+#             */
-/*   Updated: 2019/05/22 20:54:53 by emedea           ###   ########.fr       */
+/*   Updated: 2019/05/26 19:22:25 by emedea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static t_map	init_new_map(int amount)
 	return (result);
 }
 
+
 static void			new_coordinates(t_tetriminos *new, t_tetriminos *old, int x, int y)
 {
 	int				i;
@@ -62,7 +63,7 @@ static void			new_coordinates(t_tetriminos *new, t_tetriminos *old, int x, int y
 	}
 }
 
-static int			is_here_place(t_tetriminos *new, t_map *map)
+/*static int			is_here_place(t_tetriminos *new, t_map *map)
 {
 	int				i;
 	int				new_coordinates;
@@ -75,7 +76,7 @@ static int			is_here_place(t_tetriminos *new, t_map *map)
 			return (0);
 	}
 	return (1);
-}
+}*/
 
 static	void		current_map_position(t_map *map, int *k, int *x, int *y)
 {
@@ -102,22 +103,6 @@ static void			write_tetriminos_to_map(t_tetriminos *new, t_map *map, int number)
 	}
 }
 
-static void			swap_objects(t_tetriminos *new, t_tetriminos *old)
-{
-
-}
-
-static void			temporary_function(int amount, )
-{
-	int				i;
-
-	i = -1;
-	while (++i < amount)
-	{
-
-	}
-}
-
 t_map				generate_map(t_tetriminos *objects, int amount)
 {
 	t_map			our_map;
@@ -126,32 +111,16 @@ t_map				generate_map(t_tetriminos *objects, int amount)
 	int				temp_k;
 	int				k;
 	int				x;
-	int				y;
+	int				y:
+	int				smogli_li_postavit;
+	int				perestanovki;
+	int				len;
 
+	perestanovki = 0;
 	temp = (t_tetriminos *)malloc(sizeof(t_tetriminos) * amount);
-	our_map = init_new_map(amount);
+	our_map = init_map(amount);
 	i = 0;
 	x = 0;
 	y = 0;
 	k = 0;
-	while (i < 4)
-	{
-		temp_k = k;
-		while (temp_k < ft_strlen(our_map.solution))
-		{
-			new_coordinates(&temp[i], &objects[i], x, y);
-			current_map_position(&our_map, &k, &x, &y);
-			if (is_here_place(&temp[i], &our_map))
-			{
-				printf("%d\n", objects[i].number);
-				write_tetriminos_to_map(&temp[i], &our_map, objects[i].number);
-				break ;
-			}
-			temp_k++;
-		}
-		k++;
-		current_map_position(&our_map, &k, &x, &y);
-		i++;
-	}
-	return (our_map);
 }

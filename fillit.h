@@ -6,7 +6,7 @@
 /*   By: emedea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 14:39:21 by emedea            #+#    #+#             */
-/*   Updated: 2019/05/22 19:45:15 by emedea           ###   ########.fr       */
+/*   Updated: 2019/05/26 17:48:18 by emedea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ typedef struct		s_tetriminos{
 	int				number;
 	int				x[4];
 	int				y[4];
+	int				position[4];
 }					t_tetriminos;
 
 typedef struct		s_map{
