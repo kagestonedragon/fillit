@@ -62,7 +62,6 @@ t_map				generate_map(t_tetriminos *objects, int amount, int map_size, int x, in
 	t_map			map;
 	t_tetriminos	*new_objects;
 	int				i;
-	int				j;
 	int				success;
 
 	new_objects = (t_tetriminos *)malloc(sizeof(t_tetriminos) * amount);
