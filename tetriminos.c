@@ -85,15 +85,15 @@ int                 last_combination(t_tetriminos *input, int amount)
         i--;
     if (i == -1)
     {
-        while (++i < amount)
+        while (++i < (amount - 1))
         {
             j = -1;
-            while (++j < amount)
+            while (++j < (amount - i - 1))
             {
-                if (input[i].number < input[j].number)
+                if (input[j].number > input[j + 1].number)
                 {
-                    temporary = input[i];
-                    input[i] = input[j];
+                    temporary = input[j];
+                    input[j] = input[j + 1];
                     input[j] = temporary;
                 }
             }

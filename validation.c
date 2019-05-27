@@ -33,6 +33,7 @@ int			amount_tetriminos(char *input)
 		tetriminos++;
 		i += 21;
 	}
+    printf("%d\n", tetriminos);
 	if (input[i + 20] != '\n' && (i + 20) < length)
 		return (0);
 	if (input[length - 1] == '\n' && (input[length - 2] == '.' || input[length - 2] == '#'))

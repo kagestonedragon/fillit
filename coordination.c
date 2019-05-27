@@ -1,5 +1,6 @@
 #include "fillit.h"
 #include "libft/libft.h"
+#include <stdio.h>
 
 int         minimal_map_size(int amount)
 {

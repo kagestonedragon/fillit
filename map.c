@@ -75,5 +75,6 @@ t_map				generate_map(t_tetriminos *objects, int amount, int map_size, int x, in
         return (map); 
     else if (!last_combination(objects, amount))
         return (generate_map(next_combination(objects, amount), amount, map_size, 0, 0));
-    return (generate_map(next_combination(objects, amount), amount, map_size + 1, 0, 0));
+    else
+        return (generate_map(next_combination(objects, amount), amount, map_size + 1, 0, 0));
 }
