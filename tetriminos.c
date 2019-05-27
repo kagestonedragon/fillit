@@ -6,7 +6,7 @@
 /*   By: emedea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 12:35:54 by emedea            #+#    #+#             */
-/*   Updated: 2019/05/23 12:17:11 by emedea           ###   ########.fr       */
+/*   Updated: 2019/05/27 17:17:48 by emedea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ static void         swap(t_tetriminos *a, int i, int j)
     s = a[i];
     a[i] = a[j];
     a[j] = s;
+	printf("SEG_FAULT");
 }
 
 int                 last_combination(t_tetriminos *input, int amount)
@@ -85,22 +86,22 @@ int                 last_combination(t_tetriminos *input, int amount)
         i--;
     if (i == -1)
     {
-        while (++i < (amount - 1))
+        while (++i < amount)
         {
-            j = -1;
-            while (++j < (amount - i - 1))
+            j = i;
+            while (++j < amount)
             {
-                if (input[j].number > input[j + 1].number)
+                if (input[j].number < input[i].number)
                 {
                     temporary = input[j];
-                    input[j] = input[j + 1];
-                    input[j] = temporary;
+                    input[j] = input[i];
+                    input[i] = temporary;
                 }
             }
         }
         return (1);
     }
-    return (0);
+	return (0);
 }
         
 t_tetriminos        *next_combination(t_tetriminos *input, int amount)

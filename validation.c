@@ -6,7 +6,7 @@
 /*   By: emedea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 18:07:34 by emedea            #+#    #+#             */
-/*   Updated: 2019/05/22 20:21:17 by emedea           ###   ########.fr       */
+/*   Updated: 2019/05/27 13:47:47 by emedea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int			amount_tetriminos(char *input)
 		tetriminos++;
 		i += 21;
 	}
-    printf("%d\n", tetriminos);
 	if (input[i + 20] != '\n' && (i + 20) < length)
 		return (0);
 	if (input[length - 1] == '\n' && (input[length - 2] == '.' || input[length - 2] == '#'))

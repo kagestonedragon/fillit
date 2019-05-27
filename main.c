@@ -6,7 +6,7 @@
 /*   By: emedea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 12:49:39 by emedea            #+#    #+#             */
-/*   Updated: 2019/05/22 19:02:14 by emedea           ###   ########.fr       */
+/*   Updated: 2019/05/27 16:48:12 by emedea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int			main(void)
 	//генерируем карту
 	t_map			map;
 
-	map = generate_map(objects, amount1, minimal_map_size(amount1), 0, 0);
+	map = generate_map(objects, amount1, minimal_map_size(amount1), 0, 0, 0);
 	printf("%s", map.solution);
 	return (0);
 }
