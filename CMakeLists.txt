@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.14)
-project(fillit C)
+project(filli1 C)
 
 set(CMAKE_C_STANDARD 11)
 
 include_directories(.)
 include_directories(libft)
 
-add_executable(fillit
+add_executable(filli1
         libft/ft_atoi.c
         libft/ft_bzero.c
         libft/ft_eof2eos.c

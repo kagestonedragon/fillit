@@ -6,7 +6,7 @@
 /*   By: emedea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 14:39:21 by emedea            #+#    #+#             */
-/*   Updated: 2019/05/28 19:49:58 by emedea           ###   ########.fr       */
+/*   Updated: 2019/05/28 22:24:55 by emedea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int                 minimal_map_size(int amount);
 
 int					is_here_place(t_tetriminos *object, t_map *map, int *x, int *y, int *success);
 
-t_map				*generate_map(t_tetriminos *objects, t_map *map, int map_size, int test);
+t_map				*generate_map(t_tetriminos *objects, t_map *map, int map_size);
 
 int					unoccupied_dot(t_map *map, int *i, int *x, int *y);
 

@@ -6,7 +6,7 @@
 /*   By: emedea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 18:07:34 by emedea            #+#    #+#             */
-/*   Updated: 2019/05/28 19:15:15 by emedea           ###   ########.fr       */
+/*   Updated: 2019/05/28 22:26:58 by emedea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int validate_symbols(char *input)
 		if (input[i] == '\n' && !((i + 1) % 5))
 			new_line++;
 	}
-	if (i == 20 && dot == 12 && sharp == 4 && new_line == 4)
+	if (i == 20 && dot == 12 && sharp == 4 && new_line == 4 )
 		return (1);
 	return (0);
 }

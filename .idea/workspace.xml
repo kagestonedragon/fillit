@@ -108,7 +108,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="y" value="23" />
     <option name="width" value="2560" />
     <option name="height" value="1349" />
@@ -150,12 +150,21 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="fillit" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="fillit" TARGET_NAME="fillit" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="fillit" RUN_TARGET_NAME="fillit">
+  <component name="RunManager" selected="CMake Application.fillit">
+    <configuration name="filli1" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="filli1" TARGET_NAME="filli1" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="filli1" RUN_TARGET_NAME="filli1">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="fillit" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="filli1" TARGET_NAME="filli1" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="filli1" RUN_TARGET_NAME="filli1">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.fillit" />
+      <item itemvalue="CMake Application.filli1" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />

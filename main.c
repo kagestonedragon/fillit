@@ -6,7 +6,7 @@
 /*   By: emedea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 12:49:39 by emedea            #+#    #+#             */
-/*   Updated: 2019/05/28 19:50:05 by emedea           ###   ########.fr       */
+/*   Updated: 2019/05/28 22:25:51 by emedea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int					main(int argc, char **argv)
 	{
 		objects = fill_objects(input, amount);
 		map.amount = amount;
-		generate_map(objects, &map, minimal_map_size(amount), 0);
+		generate_map(objects, &map, minimal_map_size(amount));
 		write(1, map.solution, map.width);
 	}
 	else
