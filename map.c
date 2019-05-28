@@ -68,11 +68,10 @@ t_map				*generate_map(t_tetriminos *objects, t_map *map, int map_size, int test
 	success = 0;
 	while (++i < map->amount)
 	{
-		j = 0;
-		while ((j < map-> width) && !(is_here_place(&objects[i], map, &x, &y, &success)))
-			unoccupied_dot(map, &j, &x, &y);
-	}
-	printf("TEST - %d\n", test);
+        j = 0;
+        while ((j < map->width) && !(is_here_place(&objects[i], map, &x, &y, &success)))
+            unoccupied_dot(map, &j, &x, &y);
+    }
 	if (success == map->amount || map_size > 15)
 		return (map);
 	else if (!(last_combination(objects, map->amount)))
