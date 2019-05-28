@@ -6,41 +6,36 @@
 /*   By: emedea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 12:49:39 by emedea            #+#    #+#             */
-/*   Updated: 2019/05/27 16:48:12 by emedea           ###   ########.fr       */
+/*   Updated: 2019/05/28 19:50:05 by emedea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft/libft.h"
 #include "fillit.h"
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
 
-int			main(void)
+int					main(int argc, char **argv)
 {
-	// читаем файл
-	int		fd;
-	int		amount;
-	char	*str;
-	char	buff[10000];
-
-	fd = open("test", O_RDONLY);
-	amount = read(fd, buff, 9999);
-	buff[amount] = '\0';
-	str = (char *)malloc(sizeof(char) * (amount + 1));
-	str = ft_strdup(buff);
-
-	// создаем объекты
+	char			buffer[547];
+	char			*input;
+	int				amount;
 	t_tetriminos	*objects;
-	int				amount1;
-
-	amount1 = amount_tetriminos(str);
-	objects = fill_objects(str, amount1);
-	//генерируем карту
 	t_map			map;
 
-	map = generate_map(objects, amount1, minimal_map_size(amount1), 0, 0, 0);
-	printf("%s", map.solution);
+	buffer[read(open("test", O_RDONLY), buffer, 546)] = '\0';
+	input = (char *)malloc(sizeof(char) * (ft_strlen(buffer) + 1));
+	input = ft_strdup(buffer);
+	amount = amount_tetriminos(input);
+	if (validation(input, amount))
+	{
+		objects = fill_objects(input, amount);
+		map.amount = amount;
+		generate_map(objects, &map, minimal_map_size(amount), 0);
+		write(1, map.solution, map.width);
+	}
+	else
+		write(1, "error\n", 6);
 	return (0);
 }

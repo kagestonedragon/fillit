@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/emedea/Desktop/fillit/fillit.h
+
+/Users/emedea/Desktop/fillit/libft/libft.h
+string.h
+-
+
+/Users/emedea/Desktop/fillit/map.c
+fillit.h
+/Users/emedea/Desktop/fillit/fillit.h
+libft/libft.h
+/Users/emedea/Desktop/fillit/libft/libft.h
+stdio.h
+-
+

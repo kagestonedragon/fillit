@@ -6,7 +6,7 @@
 /*   By: emedea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 12:35:54 by emedea            #+#    #+#             */
-/*   Updated: 2019/05/27 17:17:48 by emedea           ###   ########.fr       */
+/*   Updated: 2019/05/28 16:11:46 by emedea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-t_tetriminos		coordinates(char *input)
+static t_tetriminos	coordinates(char *input)
 {
 	t_tetriminos	object;
 	int				temporary_x;
@@ -57,7 +57,7 @@ t_tetriminos		*fill_objects(char *input, int amount)
 	objects = (t_tetriminos *)malloc(sizeof(t_tetriminos) * amount);
 	while (counter < amount)
 	{
-		objects[counter] = coordinates(&input[i]);
+		objects[counter] = coordinates(input + i);
 		objects[counter].number = counter;
 		counter++;
 		i += 21;
@@ -72,7 +72,6 @@ static void         swap(t_tetriminos *a, int i, int j)
     s = a[i];
     a[i] = a[j];
     a[j] = s;
-	printf("SEG_FAULT");
 }
 
 int                 last_combination(t_tetriminos *input, int amount)
