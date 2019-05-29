@@ -6,7 +6,7 @@
 /*   By: emedea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 16:09:32 by emedea            #+#    #+#             */
-/*   Updated: 2019/05/28 22:25:09 by emedea           ###   ########.fr       */
+/*   Updated: 2019/05/29 16:48:10 by emedea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ static int	write_tetriminos_to_map(t_tetriminos *object, t_map *map)
 int			is_here_place(t_tetriminos *object, t_map *map, int *x, int *y, int *success)
 {
 	int		i;
-	new_coordinates(object, map, x, y);
+
 	i = -1;
+	new_coordinates(object, map, x, y);
 	while (++i < 4)
 		if ((object->coordination[i] > map->width) || (map->solution[object->coordination[i]] != '.'))
 			return (0);
