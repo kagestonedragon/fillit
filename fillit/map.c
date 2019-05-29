@@ -6,12 +6,12 @@
 /*   By: emedea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 17:56:56 by emedea            #+#    #+#             */
-/*   Updated: 2019/05/28 22:28:58 by emedea           ###   ########.fr       */
+/*   Updated: 2019/05/29 16:26:38 by emedea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include "libft/libft.h"
+#include "../libft/libft.h"
 
 int					minimal_map_size(int amount)
 {

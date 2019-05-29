@@ -6,16 +6,12 @@
 /*   By: emedea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 12:35:54 by emedea            #+#    #+#             */
-/*   Updated: 2019/05/28 16:11:46 by emedea           ###   ########.fr       */
+/*   Updated: 2019/05/29 16:27:15 by emedea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include "libft/libft.h"
-#include <stdio.h>
 #include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
 
 static t_tetriminos	coordinates(char *input)
 {
