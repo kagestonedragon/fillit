@@ -1,15 +1,53 @@
-NAME = fillit
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: fmelda <fmelda@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/05/29 17:55:12 by fmelda            #+#    #+#              #
+#    Updated: 2019/05/29 18:03:34 by fmelda           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-$(NAME):
-		make -C libft/
-		gcc -Wall -Wextra -Werror -I fillit/ -c fillit/validation.c fillit/tetriminos.c fillit/coordination.c fillit/map.c fillit/main.c
-		gcc validation.o tetriminos.o coordination.o map.o main.o -L libft/ -lft -o $(NAME)
+NAME			= fillit
+
+CC				= gcc
+CFLAGS			= -Wall -Wextra -Werror
+
+SRCS			= srcs/validation.c \
+				  srcs/tetriminos.c \
+				  srcs/map.c \
+				  srcs/coordination.c \
+				  srcs/main.c
+
+OBJS = validation.o \
+				  tetriminos.o \
+				  map.o \
+				  coordination.o \
+				  main.o
+
+
+
+all: $(NAME)
+
+$(NAME): lib $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L libft -lft
+
+$(OBJS):
+	$(CC) $(CFLAGS) -c $(SRCS) -Iincludes/ -Ilibft/includes/
+
+lib:
+	make -C libft
 
 clean:
-		make -C libft/ clean
-		rm -f validation.o tetriminos.o coordination.o map.o main.o
+	/bin/rm -rf $(OBJS)
+	make -C libft clean
 
-fclean:
-		clean
-		make -C libft/ fclean
-		rm -f $(NAME)
+fclean: clean
+	/bin/rm -rf $(NAME)
+	make -C libft fclean
+
+re: fclean all
+
+.PHONY: clean fclean all re
