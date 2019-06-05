@@ -6,7 +6,7 @@
 /*   By: fmelda <fmelda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 12:49:39 by emedea            #+#    #+#             */
-/*   Updated: 2019/06/05 13:53:43 by fmelda           ###   ########.fr       */
+/*   Updated: 2019/06/05 13:59:40 by emedea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int					main(int argc, char **argv)
 	if (validation(input, amount) || argc != 2)
 	{
 		objects = fill_objects(input, amount);
+		if (!objects)
+			return (0);
 		map.amount = amount;
 		map.size = minimal_map_size(amount);
 		get_solution(objects, &map);
