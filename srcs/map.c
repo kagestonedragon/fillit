@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emedea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fmelda <fmelda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 17:56:56 by emedea            #+#    #+#             */
-/*   Updated: 2019/06/05 12:47:13 by emedea           ###   ########.fr       */
+/*   Updated: 2019/06/05 13:46:15 by fmelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include "../libft/libft.h"
 
-int             minimal_map_size(int amount)
+int				minimal_map_size(int amount)
 {
 	int			result;
-	
+
 	result = amount * 4;
 	while (!ft_sqrt(result))
 		result++;
 	return (ft_sqrt(result));
 }
 
-static t_map    *create_new_map(t_map *map)
+static t_map	*create_new_map(t_map *map)
 {
 	int			i;
 
@@ -39,26 +39,26 @@ static t_map    *create_new_map(t_map *map)
 	return (map);
 }
 
-t_map           *get_solution(t_tetriminos *objects, t_map *map)
+t_map			*get_solution(t_tetriminos *objects, t_map *map)
 {
-    int         i;
+	int		i;
 
-    i = -1;
-    create_new_map(map);
-    while (++i < map->amount) 
-    {
-        while (objects[i].position < map->width) 
-        {
-            if (free_place(&objects[i], map))
-                break ;
-             next_position(&objects[i], map);
-        }
-        if (objects[i].position == map->width)
-        {
-            next_step(objects, map, i);
-            i = -1;
-            create_new_map(map);
-        }
-    }
-    return (map);
+	i = -1;
+	create_new_map(map);
+	while (++i < map->amount)
+	{
+		while (objects[i].position < map->width)
+		{
+			if (free_place(&objects[i], map))
+				break ;
+			next_position(&objects[i], map);
+		}
+		if (objects[i].position == map->width)
+		{
+			next_step(objects, map, i);
+			i = -1;
+			create_new_map(map);
+		}
+	}
+	return (map);
 }

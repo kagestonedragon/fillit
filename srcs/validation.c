@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validation.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmelda <fmelda@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/05 13:46:51 by fmelda            #+#    #+#             */
+/*   Updated: 2019/06/05 13:48:55 by fmelda           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 #include "../libft/libft.h"
 
 int			amount_tetriminos(char *input)
 {
 	int		i;
-	int 	length;
+	int		length;
 	int		tetriminos;
 
 	i = 0;
@@ -19,7 +31,8 @@ int			amount_tetriminos(char *input)
 	}
 	if (input[i + 20] != '\n' && (i + 20) < length)
 		return (0);
-	if (input[length - 1] == '\n' && (input[length - 2] == '.' || input[length - 2] == '#'))
+	if (input[length - 1] == '\n' &&
+	(input[length - 2] == '.' || input[length - 2] == '#'))
 	{
 		tetriminos++;
 		return (tetriminos);
@@ -27,12 +40,12 @@ int			amount_tetriminos(char *input)
 	return (0);
 }
 
-static int validate_symbols(char *input)
+static int	validate_symbols(char *input)
 {
 	int		dot;
-	int 	sharp;
-	int 	new_line;
-	int 	counter;
+	int		sharp;
+	int		new_line;
+	int		counter;
 
 	dot = 0;
 	sharp = 0;
