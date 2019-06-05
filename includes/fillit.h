@@ -6,7 +6,7 @@
 /*   By: emedea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 14:39:21 by emedea            #+#    #+#             */
-/*   Updated: 2019/05/28 22:24:55 by emedea           ###   ########.fr       */
+/*   Updated: 2019/06/05 12:50:55 by emedea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ typedef struct		s_tetriminos{
 	int				number;
 	int				x[4];
 	int				y[4];
-    int             current_position;
+    int             position;
 	int				coordination[4];
 }					t_tetriminos;
 
@@ -33,7 +33,7 @@ int					validation(char *input, int amount);
 
 t_tetriminos		*fill_objects(char *input, int amount);
 
-void                next_step(t_tetriminos *objects, t_map *map, int position);
+void                next_step(t_tetriminos *objects, t_map *map, int start);
 int                 next_position(t_tetriminos *object, t_map *map);
 
 int                 minimal_map_size(int amount);

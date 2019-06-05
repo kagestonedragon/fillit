@@ -1,130 +1,95 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   validation.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fmelda <fmelda@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/09 16:22:03 by fmelda            #+#    #+#             */
-/*   Updated: 2019/05/29 18:12:01 by fmelda           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "fillit.h"
 #include "../libft/libft.h"
 
-int amount_tetriminos(char *str)
+int			amount_tetriminos(char *input)
 {
-	int len;
-	int i;
-	int tetri;
+	int		i;
+	int 	length;
+	int		tetriminos;
 
 	i = 0;
-	tetri = 0;
-	len = ft_strlen(str);
-	if (str)
+	length = ft_strlen(input);
+	tetriminos = 0;
+	if (!input)
+		return (0);
+	while (input[i + 20] == '\n' && (i + 20) < length)
 	{
-		if (len == 20)
-			return (1);
-		else if (str[i + 20] != '\n')
-			return (0);
-		while (str[i + 20] == '\n' && ((i + 20) < len))
-		{
-			if ((str[i + 41] != '\n') && ((i + 41) < len))
-				return (0);
-			tetri++;
-			i += 21;
-		}
-		if (str[len - 1] == '\n' && (str[len - 2] == '.' || str[len - 2] == '#'))
-			tetri++;
-		else
-			return (0);
-		return (tetri);
+		tetriminos++;
+		i += 21;
+	}
+	if (input[i + 20] != '\n' && (i + 20) < length)
+		return (0);
+	if (input[length - 1] == '\n' && (input[length - 2] == '.' || input[length - 2] == '#'))
+	{
+		tetriminos++;
+		return (tetriminos);
 	}
 	return (0);
 }
 
-int check_amount(char *str)
+static int validate_symbols(char *input)
 {
-	int dot;
-	int symb;
-	int counter;
-	int newline;
+	int		dot;
+	int 	sharp;
+	int 	new_line;
+	int 	counter;
 
 	dot = 0;
-	symb = 0;
-	counter = 0;
-	newline = 0;
-	if (str)
+	sharp = 0;
+	new_line = 0;
+	counter = -1;
+	while (++counter < 20)
 	{
-		while (counter < 20)
-		{
-			if (str[counter] == '.' && dot < 12)
-				dot++;
-			if (str[counter] == '#' && symb < 4)
-				symb++;
-			if (str[counter] == '\n' && ((counter + 1) % 5 == 0) && newline < 4)
-				newline++;
-			counter++;
-		}	
+		if (input[counter] == '.' && dot < 12)
+			dot++;
+		if (input[counter] == '#' && sharp < 4)
+			sharp++;
+		if (input[counter] == '\n' && new_line < 4 && !((counter + 1) % 5))
+			new_line++;
 	}
-	if (counter == 20 && dot == 12 && symb == 4 && newline == 4)
+	if (dot == 12 && sharp == 4 && new_line == 4)
 		return (1);
-	else
+	return (0);
+}
+
+static int	validate_connections(char *input)
+{
+	int		i;
+	int		connections;
+
+	i = -1;
+	connections = 0;
+	while (++i < 20)
+	{
+		if (input[i] == '#')
+		{
+			if (input[i - 1] == '#')
+				connections++;
+			if (input[i + 1] == '#')
+				connections++;
+			if (input[i + 5] == '#' && i < 16)
+				connections++;
+			if (input[i - 5] == '#' && i > 3)
+				connections++;
+		}
+	}
+	if (connections == 8 || connections == 6)
+		return (1);
+	return (0);
+}
+
+int			validation(char *input, int amount)
+{
+	int		tetriminos;
+
+	if (amount > 26 || amount <= 0)
 		return (0);
-}
-
-int check_connection(char *str)
-{
-	int connect;
-	int i;
-	int symb;
-
-	connect = 0;
-	i = 0;
-	symb = 0;
-	if (str)
+	tetriminos = 0;
+	while (tetriminos++ < amount)
 	{
-		while (connect < 8 && symb < 4)
-		{
-			if (str[i] == '#')
-				symb++;
-			if (str[i] == '#' && str[i + 1] == '#')
-				connect++;
-			if (str[i] == '#' && str[i - 1] == '#')
-				connect++;
-			if (str[i] == '#' && str[i + 5] == '#' && i < 16)
-				connect++;
-			if (str[i] == '#' && str[i - 5] == '#' && i > 3)
-				connect++;
-			i++;
-		}
-	}
-	if (connect == 8 || connect == 6)
-		return (1);
-	else
-		return (-1);
-}
-
-int validation(char *input, int amount)
-{
-	int	tetri;
-
-	if (input)
-	{
-		if (amount > 26 || amount == 0)
+		if (!(validate_symbols(input)) || !(validate_connections(input)))
 			return (0);
-		tetri = 0;
-		while (tetri < amount)
-		{
-			if (check_amount(input) != 1)
-				return (0);
-			if (check_connection(input) == 1)
-				input += 21;
-			else
-				return (0);
-			tetri++;
-		}
+		input += 21;
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: emedea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 17:56:56 by emedea            #+#    #+#             */
-/*   Updated: 2019/05/29 17:29:32 by emedea           ###   ########.fr       */
+/*   Updated: 2019/06/05 12:47:13 by emedea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ t_map           *get_solution(t_tetriminos *objects, t_map *map)
     create_new_map(map);
     while (++i < map->amount) 
     {
-        while (objects[i].current_position < map->width) 
+        while (objects[i].position < map->width) 
         {
             if (free_place(&objects[i], map))
                 break ;
              next_position(&objects[i], map);
         }
-        if (objects[i].current_position == map->width)
+        if (objects[i].position == map->width)
         {
             next_step(objects, map, i);
             i = -1;
