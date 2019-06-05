@@ -42,78 +42,54 @@ static t_tetriminos	coordinates(char *input)
 	return (object);
 }
 
-t_tetriminos		*fill_objects(char *input, int amount)
+t_tetriminos        *fill_objects(char *input, int amount)
 {
-	t_tetriminos	*objects;
+    t_tetriminos    *objects;
 	int				counter;
 	int				i;
 
-	counter = 0;
-	i = 0;
-	objects = (t_tetriminos *)malloc(sizeof(t_tetriminos) * amount);
-	while (counter < amount)
-	{
-		objects[counter] = coordinates(input + i);
-		objects[counter].number = counter;
-		counter++;
-		i += 21;
-	}
-	return (objects);
-}
-
-static void         swap(t_tetriminos *a, int i, int j)
-{
-    t_tetriminos    s;
-
-    s = a[i];
-    a[i] = a[j];
-    a[j] = s;
-}
-
-int                 last_combination(t_tetriminos *input, int amount)
-{
-    int             i;
-    int             j;
-    t_tetriminos    temporary;
-
-    i = amount - 2;
-    while (i != -1 && input[i].number >= input[i + 1].number)
-        i--;
-    if (i == -1)
+    objects = (t_tetriminos *)malloc(sizeof(t_tetriminos) * amount);
+    if (!objects)
+        return (NULL);
     {
-        while (++i < amount)
+	    counter = 0;
+	    i = 0;
+	    while (counter < amount)
         {
-            j = i;
-            while (++j < amount)
-            {
-                if (input[j].number < input[i].number)
-                {
-                    temporary = input[j];
-                    input[j] = input[i];
-                    input[i] = temporary;
-                }
-            }
-        }
-        return (1);
+		    objects[counter] = coordinates(input + i);
+		    objects[counter].number = counter;
+            objects[counter].current_position = 0;
+		    counter++;
+		    i += 21;
+	    }
     }
-	return (0);
+    return (objects);
 }
-        
-t_tetriminos        *next_combination(t_tetriminos *input, int amount)
+
+void                next_step(t_tetriminos *objects, t_map *map, int position)
 {
     int             i;
-    int             j;
+ 
+    if (objects[0].current_position != map->width)
+    {
+        i = map->amount;
+        while ((position - 1) < --i)
+            objects[i].current_position = 0;
+        objects[position - 1].current_position++;
+    }
+    else
+    {
+        i = -1;
+        while (++i < map->amount)
+            objects[i].current_position = 0;
+        map->size++;
+    }
+}
 
-    i = amount - 2;
-    while (i != -1 && input[i].number >= input[i + 1].number)
-        i--;
-    j = amount - 1;
-    while (input[i].number >= input[j].number)
-        j--;
-    swap(input, i, j);
-    j = i + 1;
-    i = amount - 1;
-    while (j < i)
-        swap(input, j++, i--);
-    return (input);
+int                 next_position(t_tetriminos *object, t_map *map)
+{
+    while (++object->current_position < map->width)
+        if (map->solution[object->current_position] == '.')
+            break ;
+    return (object->current_position);
 }

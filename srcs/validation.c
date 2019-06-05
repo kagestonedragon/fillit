@@ -93,9 +93,9 @@ int check_connection(char *str)
 				connect++;
 			if (str[i] == '#' && str[i - 1] == '#')
 				connect++;
-			if (str[i] == '#' && str[i + 5] == '#')
+			if (str[i] == '#' && str[i + 5] == '#' && i < 16)
 				connect++;
-			if (str[i] == '#' && str[i - 5] == '#')
+			if (str[i] == '#' && str[i - 5] == '#' && i > 3)
 				connect++;
 			i++;
 		}
