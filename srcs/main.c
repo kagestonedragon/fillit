@@ -6,7 +6,7 @@
 /*   By: emedea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 12:49:39 by emedea            #+#    #+#             */
-/*   Updated: 2019/05/29 17:56:49 by emedea           ###   ########.fr       */
+/*   Updated: 2019/06/05 13:31:06 by emedea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ int					main(int argc, char **argv)
 	t_map			map;
 
 	buffer[read(open(argv[1], O_RDONLY), buffer, 546)] = '\0';
-	input = (char *)malloc(sizeof(char) * (ft_strlen(buffer) + 1));
-    if (!input)
-        return (0);
 	input = ft_strdup(buffer);
 	amount = amount_tetriminos(input);
 	if (validation(input, amount) || argc != 2)
