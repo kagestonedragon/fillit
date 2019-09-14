@@ -4,11 +4,11 @@ Main goal of this project is to find the smallest square in the minimal amount o
 #### Input
 
 <p align="left">
-  <img src="/images/input.png" width="50%" alt="auto_make information"/>
+  <img src="/images/input.png" width="30%" alt="auto_make information"/>
 </p>
 
 #### Output
 
 <p align="left">
-  <img src="/images/output.png" width="50%" alt="auto_make information"/>
+  <img src="/images/output.png" width="30%" alt="auto_make information"/>
 </p>
